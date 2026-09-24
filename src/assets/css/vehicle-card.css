@@ -1,0 +1,154 @@
+.vehicle-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+  isolation: isolate;
+}
+
+.vehicle-card__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.vehicle-card__image,
+.vehicle-card__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    opacity 0.5s ease,
+    transform 0.8s ease;
+}
+
+.vehicle-card__image {
+  z-index: 1;
+  opacity: 1;
+}
+
+.vehicle-card__video {
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vehicle-card--video-active .vehicle-card__image {
+  opacity: 0;
+}
+
+.vehicle-card--video-active .vehicle-card__video {
+  opacity: 1;
+}
+
+.vehicle-card:hover .vehicle-card__image,
+.vehicle-card:hover .vehicle-card__video {
+  transform: scale(1.035);
+}
+
+.vehicle-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.62) 28%,
+    rgba(0, 0, 0, 0.22) 58%,
+    rgba(0, 0, 0, 0.05) 78%,
+    transparent 100%
+  );
+}
+
+.vehicle-card__content {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 32px;
+}
+
+.vehicle-card__year {
+  margin-bottom: 8px;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.vehicle-card__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.vehicle-card__price {
+  margin: 12px 0 24px;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.vehicle-card__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 0 6px;
+
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  color: #fff;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.vehicle-card__button-arrow {
+  transition: transform 0.25s ease;
+}
+
+.vehicle-card__button:hover .vehicle-card__button-arrow {
+  transform: translateX(5px);
+}
+
+/* Touch devices should use the featured image instead of hover video. */
+@media (hover: none) {
+  .vehicle-card__video {
+    display: none;
+  }
+
+  .vehicle-card:hover .vehicle-card__image {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .vehicle-card {
+    aspect-ratio: 4 / 5;
+  }
+
+  .vehicle-card__content {
+    padding: 24px;
+  }
+}
