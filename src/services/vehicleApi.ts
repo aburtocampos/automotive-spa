@@ -43,7 +43,12 @@ export async function getVehicleCards(): Promise<VehicleCardData[]> {
         image?.source_url ??
         '',
 
-        videoUrl: video?.source_url ?? null
+        videoUrl: video?.source_url ?? null,
+        brandIds: vehicle['vehicle-brands'],
+typeIds: vehicle['vehicle-types'],
+transmissionIds: vehicle['vehicle-transmissions'],
+fuelTypeIds: vehicle['vehicle-fuel-types']
+
       };
     })
   );

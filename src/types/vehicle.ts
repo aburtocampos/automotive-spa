@@ -68,4 +68,14 @@ export interface VehicleCardData {
   price: number;
   imageUrl: string;
   videoUrl: string | null;
+  brandIds: number[];
+typeIds: number[];
+transmissionIds: number[];
+fuelTypeIds: number[];
+}
+
+export interface VehicleTaxonomyTerm {
+  id: number;
+  name: string;
+  slug: string;
 }
