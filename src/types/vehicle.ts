@@ -17,7 +17,7 @@ export interface Vehicle {
 
   title: RenderedContent;
   excerpt: RenderedContent;
-
+  content?: RenderedContent;
   featured_media: number;
 
   meta: VehicleMeta;

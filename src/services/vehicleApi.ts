@@ -53,3 +53,21 @@ fuelTypeIds: vehicle['vehicle-fuel-types']
     })
   );
 }
+
+export async function getVehicleBySlug(
+  slug: string
+): Promise<Vehicle | null> {
+  const response = await fetch(
+    `${API_URL}/vehicles?slug=${encodeURIComponent(slug)}`
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch vehicle ${slug}: ${response.status}`
+    );
+  }
+
+  const vehicles = await response.json() as Vehicle[];
+
+  return vehicles[0] ?? null;
+}
